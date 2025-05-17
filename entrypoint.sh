@@ -4,7 +4,7 @@ set -e
 # Default arguments and port
 MCP_ARGS=""
 # Use MCP_PORT from environment or default to 8931
-INTERNAL_PORT=${MCP_PORT:-8931}
+INTERNAL_PORT=${MCP_PORT:-9000}
 
 # Add --headless if HEADLESS environment variable is true
 if [ "$HEADLESS" = "true" ]; then
@@ -14,7 +14,7 @@ fi
 # Add --port if MCP_PORT is set (for SSE connection)
 # This allows SSE connection even when HEADLESS=true
 if [ -n "$MCP_PORT" ]; then
-  MCP_ARGS="$MCP_ARGS --port $INTERNAL_PORT"
+  MCP_ARGS="$MCP_ARGS --port $INTERNAL_PORT --host 0.0.0.0"
 fi
 
 # Add other options if needed (e.g., --vision)
